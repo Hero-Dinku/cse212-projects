@@ -11,13 +11,13 @@ public class PriorityQueueTests
     public void TestPriorityQueue_BasicPriority()
     {
         var priorityQueue = new PriorityQueue();
-        priorityQueue.Enqueue(\"Low\", 1);
-        priorityQueue.Enqueue(\"High\", 3);
-        priorityQueue.Enqueue(\"Medium\", 2);
+        priorityQueue.Enqueue(""Low"", 1);
+        priorityQueue.Enqueue(""High"", 3);
+        priorityQueue.Enqueue(""Medium"", 2);
         
-        Assert.AreEqual(\"High\", priorityQueue.Dequeue());
-        Assert.AreEqual(\"Medium\", priorityQueue.Dequeue());
-        Assert.AreEqual(\"Low\", priorityQueue.Dequeue());
+        Assert.AreEqual(""High"", priorityQueue.Dequeue());
+        Assert.AreEqual(""Medium"", priorityQueue.Dequeue());
+        Assert.AreEqual(""Low"", priorityQueue.Dequeue());
     }
 
     [TestMethod]
@@ -27,13 +27,13 @@ public class PriorityQueueTests
     public void TestPriorityQueue_SamePriorityFIFO()
     {
         var priorityQueue = new PriorityQueue();
-        priorityQueue.Enqueue(\"First\", 2);
-        priorityQueue.Enqueue(\"Second\", 2);
-        priorityQueue.Enqueue(\"Third\", 2);
+        priorityQueue.Enqueue(""First"", 2);
+        priorityQueue.Enqueue(""Second"", 2);
+        priorityQueue.Enqueue(""Third"", 2);
         
-        Assert.AreEqual(\"First\", priorityQueue.Dequeue());
-        Assert.AreEqual(\"Second\", priorityQueue.Dequeue());
-        Assert.AreEqual(\"Third\", priorityQueue.Dequeue());
+        Assert.AreEqual(""First"", priorityQueue.Dequeue());
+        Assert.AreEqual(""Second"", priorityQueue.Dequeue());
+        Assert.AreEqual(""Third"", priorityQueue.Dequeue());
     }
 
     [TestMethod]
@@ -43,20 +43,20 @@ public class PriorityQueueTests
     public void TestPriorityQueue_MixedPrioritiesWithSameHigh()
     {
         var priorityQueue = new PriorityQueue();
-        priorityQueue.Enqueue(\"A\", 1);
-        priorityQueue.Enqueue(\"B\", 3);
-        priorityQueue.Enqueue(\"C\", 3); // Same priority as B
-        priorityQueue.Enqueue(\"D\", 2);
+        priorityQueue.Enqueue(""A"", 1);
+        priorityQueue.Enqueue(""B"", 3);
+        priorityQueue.Enqueue(""C"", 3); // Same priority as B
+        priorityQueue.Enqueue(""D"", 2);
         
-        Assert.AreEqual(\"B\", priorityQueue.Dequeue()); // Highest priority, first of same
-        Assert.AreEqual(\"C\", priorityQueue.Dequeue()); // Same priority as B, FIFO
-        Assert.AreEqual(\"D\", priorityQueue.Dequeue()); // Priority 2
-        Assert.AreEqual(\"A\", priorityQueue.Dequeue()); // Priority 1
+        Assert.AreEqual(""B"", priorityQueue.Dequeue()); // Highest priority, first of same
+        Assert.AreEqual(""C"", priorityQueue.Dequeue()); // Same priority as B, FIFO
+        Assert.AreEqual(""D"", priorityQueue.Dequeue()); // Priority 2
+        Assert.AreEqual(""A"", priorityQueue.Dequeue()); // Priority 1
     }
 
     [TestMethod]
     // Scenario: Dequeue from empty queue
-    // Expected Result: InvalidOperationException with message \"The queue is empty.\"
+    // Expected Result: InvalidOperationException with message ""The queue is empty.""
     // Defect(s) Found: Exception type and message should be correct
     public void TestPriorityQueue_EmptyQueue()
     {
@@ -65,11 +65,11 @@ public class PriorityQueueTests
         try
         {
             priorityQueue.Dequeue();
-            Assert.Fail(\"Should throw exception for empty queue\");
+            Assert.Fail(""Should throw exception for empty queue"");
         }
         catch (InvalidOperationException ex)
         {
-            Assert.AreEqual(\"The queue is empty.\", ex.Message);
+            Assert.AreEqual(""The queue is empty."", ex.Message);
         }
     }
 
@@ -80,15 +80,15 @@ public class PriorityQueueTests
     public void TestPriorityQueue_SingleItem()
     {
         var priorityQueue = new PriorityQueue();
-        priorityQueue.Enqueue(\"Single\", 5);
+        priorityQueue.Enqueue(""Single"", 5);
         
-        Assert.AreEqual(\"Single\", priorityQueue.Dequeue());
+        Assert.AreEqual(""Single"", priorityQueue.Dequeue());
         
         // Should be empty now
         try
         {
             priorityQueue.Dequeue();
-            Assert.Fail(\"Should throw exception after dequeuing last item\");
+            Assert.Fail(""Should throw exception after dequeuing last item"");
         }
         catch (InvalidOperationException) { }
     }
@@ -100,15 +100,15 @@ public class PriorityQueueTests
     public void TestPriorityQueue_NegativeAndZeroPriorities()
     {
         var priorityQueue = new PriorityQueue();
-        priorityQueue.Enqueue(\"Most Negative\", -10);
-        priorityQueue.Enqueue(\"Negative\", -5);
-        priorityQueue.Enqueue(\"Zero\", 0);
-        priorityQueue.Enqueue(\"Positive\", 5);
+        priorityQueue.Enqueue(""Most Negative"", -10);
+        priorityQueue.Enqueue(""Negative"", -5);
+        priorityQueue.Enqueue(""Zero"", 0);
+        priorityQueue.Enqueue(""Positive"", 5);
         
-        Assert.AreEqual(\"Positive\", priorityQueue.Dequeue()); // 5 (highest)
-        Assert.AreEqual(\"Zero\", priorityQueue.Dequeue());     // 0
-        Assert.AreEqual(\"Negative\", priorityQueue.Dequeue()); // -5
-        Assert.AreEqual(\"Most Negative\", priorityQueue.Dequeue()); // -10
+        Assert.AreEqual(""Positive"", priorityQueue.Dequeue()); // 5 (highest)
+        Assert.AreEqual(""Zero"", priorityQueue.Dequeue());     // 0
+        Assert.AreEqual(""Negative"", priorityQueue.Dequeue()); // -5
+        Assert.AreEqual(""Most Negative"", priorityQueue.Dequeue()); // -10
     }
 
     [TestMethod]
@@ -119,19 +119,19 @@ public class PriorityQueueTests
     {
         var priorityQueue = new PriorityQueue();
         // Add in mixed order
-        priorityQueue.Enqueue(\"A\", 2);
-        priorityQueue.Enqueue(\"B\", 5);
-        priorityQueue.Enqueue(\"C\", 2); // Same as A
-        priorityQueue.Enqueue(\"D\", 1);
-        priorityQueue.Enqueue(\"E\", 5); // Same as B
-        priorityQueue.Enqueue(\"F\", 3);
+        priorityQueue.Enqueue(""A"", 2);
+        priorityQueue.Enqueue(""B"", 5);
+        priorityQueue.Enqueue(""C"", 2); // Same as A
+        priorityQueue.Enqueue(""D"", 1);
+        priorityQueue.Enqueue(""E"", 5); // Same as B
+        priorityQueue.Enqueue(""F"", 3);
         
         // B and E have priority 5 (highest), B first (FIFO)
-        Assert.AreEqual(\"B\", priorityQueue.Dequeue());
-        Assert.AreEqual(\"E\", priorityQueue.Dequeue()); // Same priority as B
-        Assert.AreEqual(\"F\", priorityQueue.Dequeue()); // Priority 3
-        Assert.AreEqual(\"A\", priorityQueue.Dequeue()); // Priority 2, first of same
-        Assert.AreEqual(\"C\", priorityQueue.Dequeue()); // Priority 2, same as A
-        Assert.AreEqual(\"D\", priorityQueue.Dequeue()); // Priority 1
+        Assert.AreEqual(""B"", priorityQueue.Dequeue());
+        Assert.AreEqual(""E"", priorityQueue.Dequeue()); // Same priority as B
+        Assert.AreEqual(""F"", priorityQueue.Dequeue()); // Priority 3
+        Assert.AreEqual(""A"", priorityQueue.Dequeue()); // Priority 2, first of same
+        Assert.AreEqual(""C"", priorityQueue.Dequeue()); // Priority 2, same as A
+        Assert.AreEqual(""D"", priorityQueue.Dequeue()); // Priority 1
     }
 }

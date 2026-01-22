@@ -10,8 +10,8 @@ public class TakingTurnsQueue
     /// <summary>
     /// Add a person to the queue with the given number of turns
     /// </summary>
-    /// <param name=\"name\">Name of the person</param>
-    /// <param name=\"turns\">Number of turns (0 or less means infinite)</param>
+    /// <param name=""name"">Name of the person</param>
+    /// <param name=""turns"">Number of turns (0 or less means infinite)</param>
     public void AddPerson(string name, int turns)
     {
         var person = new Person(name, turns);
@@ -26,7 +26,7 @@ public class TakingTurnsQueue
     {
         if (_people.Count == 0)
         {
-            throw new InvalidOperationException(\"No one in the queue.\");
+            throw new InvalidOperationException(""No one in the queue."");
         }
 
         var person = _people.Dequeue();
@@ -48,6 +48,6 @@ public class TakingTurnsQueue
 
     public override string ToString()
     {
-        return $\"[{string.Join(\", \", _people)}]\";
+        return $""[{string.Join("", "", _people)}]"";
     }
 }

@@ -16,9 +16,9 @@ public class TakingTurnsQueueTests
     // People with 0 or negative turns (infinite) weren't being re-enqueued correctly.
     public void TestTakingTurnsQueue_FiniteRepetition()
     {
-        var bob = new Person(\"Bob\", 2);
-        var tim = new Person(\"Tim\", 5);
-        var sue = new Person(\"Sue\", 3);
+        var bob = new Person(""Bob"", 2);
+        var tim = new Person(""Tim"", 5);
+        var sue = new Person(""Sue"", 3);
 
         Person[] expectedResult = [bob, tim, sue, bob, tim, sue, tim, sue, tim, tim];
 
@@ -32,7 +32,7 @@ public class TakingTurnsQueueTests
         {
             if (i >= expectedResult.Length)
             {
-                Assert.Fail(\"Queue should have ran out of items by now.\");
+                Assert.Fail(""Queue should have ran out of items by now."");
             }
 
             var person = players.GetNextPerson();
@@ -48,10 +48,10 @@ public class TakingTurnsQueueTests
     // Defect(s) Found: New players added mid-way should be enqueued at the end and participate normally.
     public void TestTakingTurnsQueue_AddPlayerMidway()
     {
-        var bob = new Person(\"Bob\", 2);
-        var tim = new Person(\"Tim\", 5);
-        var sue = new Person(\"Sue\", 3);
-        var george = new Person(\"George\", 3);
+        var bob = new Person(""Bob"", 2);
+        var tim = new Person(""Tim"", 5);
+        var sue = new Person(""Sue"", 3);
+        var george = new Person(""George"", 3);
 
         Person[] expectedResult = [bob, tim, sue, bob, tim, sue, tim, george, sue, tim, george, tim, george];
 
@@ -67,13 +67,13 @@ public class TakingTurnsQueueTests
             Assert.AreEqual(expectedResult[i].Name, person.Name);
         }
 
-        players.AddPerson(\"George\", 3);
+        players.AddPerson(""George"", 3);
 
         while (players.Length > 0)
         {
             if (i >= expectedResult.Length)
             {
-                Assert.Fail(\"Queue should have ran out of items by now.\");
+                Assert.Fail(""Queue should have ran out of items by now."");
             }
 
             var person = players.GetNextPerson();
@@ -93,9 +93,9 @@ public class TakingTurnsQueueTests
     {
         var timTurns = 0;
 
-        var bob = new Person(\"Bob\", 2);
-        var tim = new Person(\"Tim\", timTurns);
-        var sue = new Person(\"Sue\", 3);
+        var bob = new Person(""Bob"", 2);
+        var tim = new Person(""Tim"", timTurns);
+        var sue = new Person(""Sue"", 3);
 
         Person[] expectedResult = [bob, tim, sue, bob, tim, sue, tim, sue, tim, tim];
 
@@ -112,7 +112,7 @@ public class TakingTurnsQueueTests
 
         // Verify that the people with infinite turns really do have infinite turns.
         var infinitePerson = players.GetNextPerson();
-        Assert.AreEqual(timTurns, infinitePerson.Turns, \"People with infinite turns should not have their turns parameter modified to a very big number. A very big number is not infinite.\");
+        Assert.AreEqual(timTurns, infinitePerson.Turns, ""People with infinite turns should not have their turns parameter modified to a very big number. A very big number is not infinite."");
     }
 
     [TestMethod]
@@ -124,8 +124,8 @@ public class TakingTurnsQueueTests
     public void TestTakingTurnsQueue_ForeverNegative()
     {
         var timTurns = -3;
-        var tim = new Person(\"Tim\", timTurns);
-        var sue = new Person(\"Sue\", 3);
+        var tim = new Person(""Tim"", timTurns);
+        var sue = new Person(""Sue"", 3);
 
         Person[] expectedResult = [tim, sue, tim, sue, tim, sue, tim, tim, tim, tim];
 
@@ -141,7 +141,7 @@ public class TakingTurnsQueueTests
 
         // Verify that the people with infinite turns really do have infinite turns.
         var infinitePerson = players.GetNextPerson();
-        Assert.AreEqual(timTurns, infinitePerson.Turns, \"People with infinite turns should not have their turns parameter modified to a very big number. A very big number is not infinite.\");
+        Assert.AreEqual(timTurns, infinitePerson.Turns, ""People with infinite turns should not have their turns parameter modified to a very big number. A very big number is not infinite."");
     }
 
     [TestMethod]
@@ -155,11 +155,11 @@ public class TakingTurnsQueueTests
         try
         {
             players.GetNextPerson();
-            Assert.Fail(\"Exception should have been thrown.\");
+            Assert.Fail(""Exception should have been thrown."");
         }
         catch (InvalidOperationException e)
         {
-            Assert.AreEqual(\"No one in the queue.\", e.Message);
+            Assert.AreEqual(""No one in the queue."", e.Message);
         }
         catch (AssertFailedException)
         {
@@ -168,7 +168,7 @@ public class TakingTurnsQueueTests
         catch (Exception e)
         {
             Assert.Fail(
-                 string.Format(\"Unexpected exception of type {0} caught: {1}\",
+                 string.Format(""Unexpected exception of type {0} caught: {1}"",
                                 e.GetType(), e.Message)
             );
         }
