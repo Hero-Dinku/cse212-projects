@@ -13,7 +13,7 @@ public class PersonQueue
     /// <summary>
     /// Add a person to the queue
     /// </summary>
-    /// <param name=""person"">The person to add</param>
+    /// <param name="person">The person to add</param>
     public void Enqueue(Person person)
     {
         _queue.Insert(0, person);
@@ -33,6 +33,6 @@ public class PersonQueue
 
     public override string ToString()
     {
-        return $""[{string.Join("", "", _queue)}]"";
+        return $"[{string.Join(", ", _queue)}]";
     }
 }

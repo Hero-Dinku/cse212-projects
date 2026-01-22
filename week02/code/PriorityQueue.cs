@@ -10,8 +10,8 @@ public class PriorityQueue
     /// node is always added to the back of the queue regardless of 
     /// the priority.
     /// </summary>
-    /// <param name=""value"">The value</param>
-    /// <param name=""priority"">The priority</param>
+    /// <param name="value">The value</param>
+    /// <param name="priority">The priority</param>
     public void Enqueue(string value, int priority)
     {
         var newNode = new PriorityItem(value, priority);
@@ -22,7 +22,7 @@ public class PriorityQueue
     {
         if (_queue.Count == 0)
         {
-            throw new InvalidOperationException(""The queue is empty."");
+            throw new InvalidOperationException("The queue is empty.");
         }
 
         // Find the index of the item with the highest priority
@@ -44,7 +44,7 @@ public class PriorityQueue
 
     public override string ToString()
     {
-        return $""[{string.Join("", "", _queue)}]"";
+        return $"[{string.Join(", ", _queue)}]";
     }
 }
 
@@ -61,6 +61,6 @@ internal class PriorityItem
 
     public override string ToString()
     {
-        return $""{Value} (Pri:{Priority})"";
+        return $"{Value} (Pri:{Priority})";
     }
 }
