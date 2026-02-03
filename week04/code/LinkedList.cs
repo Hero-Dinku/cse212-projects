@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class LinkedList : IEnumerable<int>
 {
@@ -34,7 +36,7 @@ public class LinkedList : IEnumerable<int>
     {
         // Create new node
         Node newNode = new(value);
-        
+
         // If the list is empty, then point both head and tail to the new node.
         if (_tail is null)
         {
@@ -44,9 +46,9 @@ public class LinkedList : IEnumerable<int>
         // If the list is not empty, then only tail will be affected.
         else
         {
-            newNode.Prev = _tail; // Connect new node to the previous tail
-            _tail.Next = newNode; // Connect the previous tail to the new node
-            _tail = newNode; // Update the tail to point to the new node
+            _tail.Next = newNode; // Connect previous tail to new node
+            newNode.Prev = _tail; // Connect new node to previous tail
+            _tail = newNode; // Update tail to point to new node
         }
     }
 
@@ -77,21 +79,17 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void RemoveTail()
     {
-        // TODO Problem 2
-        // If the list is empty or has only one node
+        // If the list is empty or has only one item
         if (_head == _tail)
         {
             _head = null;
             _tail = null;
         }
-        // If the list has more than one node
+        // If the list has more than one item
         else if (_tail is not null)
         {
             _tail = _tail.Prev; // Move tail to previous node
-            if (_tail is not null)
-            {
-                _tail.Next = null; // Disconnect the old tail
-            }
+            _tail!.Next = null; // Remove reference to old tail
         }
     }
 
@@ -136,41 +134,32 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Remove(int value)
     {
-        // TODO Problem 3
         // If list is empty, do nothing
         if (_head is null)
             return;
-            
-        // Special case: removing the head
-        if (_head.Data == value)
-        {
-            RemoveHead();
-            return;
-        }
         
-        // Special case: removing the tail
-        if (_tail is not null && _tail.Data == value)
-        {
-            RemoveTail();
-            return;
-        }
-        
-        // Search for the node to remove
+        // Search for the node to remove starting from head
         Node? current = _head;
         while (current is not null)
         {
             if (current.Data == value)
             {
                 // Found the node to remove
-                if (current.Prev is not null)
+                if (current == _head)
                 {
-                    current.Prev.Next = current.Next;
+                    RemoveHead();
                 }
-                if (current.Next is not null)
+                else if (current == _tail)
                 {
-                    current.Next.Prev = current.Prev;
+                    RemoveTail();
                 }
-                return; // Exit after removing first occurrence
+                else
+                {
+                    // Node is in the middle
+                    current.Prev!.Next = current.Next;
+                    current.Next!.Prev = current.Prev;
+                }
+                return; // Only remove the first occurrence
             }
             current = current.Next;
         }
@@ -181,7 +170,6 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Replace(int oldValue, int newValue)
     {
-        // TODO Problem 4
         Node? current = _head;
         while (current is not null)
         {
@@ -220,8 +208,7 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public IEnumerable<int> Reverse()
     {
-        // TODO Problem 5
-        var curr = _tail; // Start at the end since this is a reverse iteration
+        var curr = _tail; // Start at the end since this is a reverse iteration.
         while (curr is not null)
         {
             yield return curr.Data; // Provide (yield) each item to the user
@@ -244,5 +231,12 @@ public class LinkedList : IEnumerable<int>
     public Boolean HeadAndTailAreNotNull()
     {
         return _head is not null && _tail is not null;
+    }
+}
+
+public static class IntArrayExtensionMethods {
+    public static string AsString(this IEnumerable<int> array)
+    {
+        return "<IEnumerable>{" + string.Join(", ", array) + "}";
     }
 }
