@@ -19,8 +19,8 @@ public class Recursion
     }
 
     // Problem 2: Permutations Choose - NOTE: Different parameter order!
-    public static void PermutationsChoose(List<string> results, string letters, int size, 
-                                          string current = """", bool[]? used = null)
+    public static void PermutationsChoose(List<string> results, string letters, int size,
+                                          string current = "", bool[] used = null)
     {
         // Initialize used array on first call
         if (used == null)
@@ -51,7 +51,7 @@ public class Recursion
     }
 
     // Problem 3: Climbing Stairs - NOTE: Returns decimal for large numbers!
-    public static decimal CountWaysToClimb(int s, Dictionary<int, decimal>? remember = null)
+    public static decimal CountWaysToClimb(int s, Dictionary<int, decimal> remember = null)
     {
         // Initialize memoization dictionary
         if (remember == null)
@@ -62,14 +62,14 @@ public class Recursion
             return remember[s];
         
         // Base cases
-        if (s == 0) 
+        if (s == 0)
             return 1;  // One way to be at the start
-        if (s < 0) 
+        if (s < 0)
             return 0;  // Invalid step
         
         // Recursive case with memoization
-        decimal ways = CountWaysToClimb(s - 1, remember) + 
-                       CountWaysToClimb(s - 2, remember) + 
+        decimal ways = CountWaysToClimb(s - 1, remember) +
+                       CountWaysToClimb(s - 2, remember) +
                        CountWaysToClimb(s - 3, remember);
         
         // Store in memoization dictionary
@@ -93,12 +93,12 @@ public class Recursion
         
         // Recursive case: replace '*' with '0' and '1'
         // Replace with '0'
-        string pattern0 = pattern.Substring(0, wildcardIndex) + ""0"" + 
+        string pattern0 = pattern.Substring(0, wildcardIndex) + "0" +
                          pattern.Substring(wildcardIndex + 1);
         WildcardBinary(pattern0, results);
         
         // Replace with '1'
-        string pattern1 = pattern.Substring(0, wildcardIndex) + ""1"" + 
+        string pattern1 = pattern.Substring(0, wildcardIndex) + "1" +
                          pattern.Substring(wildcardIndex + 1);
         WildcardBinary(pattern1, results);
     }
@@ -116,7 +116,7 @@ public class Recursion
     private static void SolveMazeHelper(List<(int, int)> currentPath, List<string> results, Maze maze)
     {
         // Get current position
-        var (currentX, currentY) = currentPath[^1];
+        var (currentX, currentY) = currentPath[currentPath.Count - 1];
         
         // Base case: reached the end
         if (maze.IsEnd(currentX, currentY))
