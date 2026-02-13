@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 
 public static class Recursion
 {
@@ -73,6 +73,7 @@ public static class Recursion
         
         if (maze.IsEnd(x, y))
         {
+            // Use the extension method from TupleListExtensionMethods
             results.Add(currPath.AsString());
             currPath.RemoveAt(currPath.Count - 1);
             return;
