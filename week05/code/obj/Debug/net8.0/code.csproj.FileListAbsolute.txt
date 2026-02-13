@@ -1,6 +1,0 @@
-C:\Users\herod\OneDrive\Desktop\cse212-projects\week05\code\obj\Debug\net8.0\code.csproj.AssemblyReference.cache
-C:\Users\herod\OneDrive\Desktop\cse212-projects\week05\code\obj\Debug\net8.0\code.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\herod\OneDrive\Desktop\cse212-projects\week05\code\obj\Debug\net8.0\code.AssemblyInfoInputs.cache
-C:\Users\herod\OneDrive\Desktop\cse212-projects\week05\code\obj\Debug\net8.0\code.AssemblyInfo.cs
-C:\Users\herod\OneDrive\Desktop\cse212-projects\week05\code\obj\Debug\net8.0\code.csproj.CoreCompileInputs.cache
-C:\Users\herod\OneDrive\Desktop\cse212-projects\week05\code\obj\Debug\net8.0\code.sourcelink.json
