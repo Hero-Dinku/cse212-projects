@@ -1,48 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace cse212;
+﻿// DO NOT MODIFY THIS FILE
 
 public class Maze
 {
-    private readonly int[] _maze;
-    private readonly int _size;
-    
-    // Constructor with 3 parameters as shown in tests
-    public Maze(int rows, int cols, int[] maze)
+    public int Width { get; }
+    public int Height { get; }
+
+    public readonly int[] Data;
+
+    public Maze(int width, int height, int[] data)
     {
-        _maze = maze;
-        _size = rows;  // Assuming square maze (rows == cols)
+        this.Width = width;
+        this.Height = height;
+        this.Data = data;
     }
 
-    // Helper method to check if we're at the end
+    /// <summary>
+    /// Helper function to determine if the (x,y) position is at 
+    /// the end of the maze.
+    /// </summary>
     public bool IsEnd(int x, int y)
     {
-        return GetCell(x, y) == 2;
+        return Data[y * Height + x] == 2;
     }
 
-    // Helper method to get cell value
-    public int GetCell(int x, int y)
+    /// <summary>
+    /// Helper function to determine if the (x,y) position is a valid
+    /// place to move given the size of the maze, the content of the maze,
+    /// and the current path already traversed.
+    /// </summary>
+    public bool IsValidMove(List<ValueTuple<int, int>> currPath, int x, int y)
     {
-        return _maze[y * _size + x];
-    }
-
-    // Helper method to check if a move is valid
-    public bool IsValidMove(int x, int y, List<(int, int)> currentPath)
-    {
-        // Check bounds
-        if (x < 0 || x >= _size || y < 0 || y >= _size)
+        // Can't go outside of the maze boundary (assume maze is a square)
+        if (x > Width - 1 || x < 0)
             return false;
-        
-        // Check if it's a wall (0 means wall)
-        if (GetCell(x, y) == 0)
+        if (y > Height - 1 || y < 0)
             return false;
-        
-        // Check if we've already been here (no circles)
-        if (currentPath.Contains((x, y)))
+        // Can't go through a wall
+        if (Data[y * Height + x] == 0)
             return false;
-        
+        // Can't go if we have already been there (don't go in circles)
+        if (currPath.Contains((x, y)))
+            return false;
+        // Otherwise, we are good
         return true;
     }
 }
